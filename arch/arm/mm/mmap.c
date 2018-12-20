@@ -87,8 +87,8 @@ arch_get_unmapped_area(struct file *filp, unsigned long addr,
 			do_align = filp || flags & MAP_SHARED;
 	}
 #else
-#define do_align 0
-#define aliasing 0
+int  do_align = 0;
+int  aliasing = 0;
 #endif
 
 	/*
@@ -156,6 +156,7 @@ full_search:
 			addr = COLOUR_ALIGN(addr, pgoff);
 	}
 }
+
 unsigned long
 arch_get_unmapped_area_topdown(struct file *filp, const unsigned long addr0,
 			const unsigned long len, const unsigned long pgoff,
